@@ -1,82 +1,553 @@
 <!DOCTYPE html>
-<html lang="en">
-	<head>
-		<title>LandSweet</title>
-		<meta name="discription" content="content">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" type="text/css" href="css/normalize.css">
-		<link rel="stylesheet" type="text/css" href="css/all.min.css">
-		<link rel="stylesheet" type="text/css" href="css/index.css">
-	</head>
-	<body>
-		<header>
-			<div class="container">
-				<div class="head">
-					<div class="logo">Land Sweet</div>
-					<div class="nav">
-						<ul>
-							<li><a href="#HOME" title="Home">HOME</a></li>
-							<li><a href="#SERVICES" title="Services">SERVICES</a></li>
-							<li><a href="#DELIVERY" title="About">DELIVERY</a></li>
-							<li><a href="#CONTACT" title="Contact">CONTACT</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="back">
-					<div class="content">
-						<div class="word-waves">
-						<span>Hello World</span>
-						<span>Hello World</span>
-						</div>
-						<div class="paragraphe">
-						<span>مرحبا بك</span>
-						<span>مرحبا بك</span>
-						</div>
-					</div>
-					<div class="picture"></div>
-				</div>
-			</div>		
-		</header> 
-		<section class="produ">
-			<div class="title" id="SERVICES"><h2>Services</h2></div>
-				<div class="box">
-					<div class="land-1">
-						<h2>Cinappon</h2>
-						<div class="photos"><img src="image/cinnabon.png" alt="photo"></div>
-						<p>15 E.G</p>			
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TechNova - حلول تقنية متكاملة</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    :root {
+      --primary: #6366f1;
+      --primary-dark: #4f46e5;
+      --dark: #0f172a;
+      --gray: #334155;
+      --light: #f8fafc;
+      --white: #ffffff;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: 'Tajawal', system-ui, -apple-system, sans-serif;
+      background: var(--light);
+      color: var(--dark);
+      line-height: 1.7;
+      transition: background 0.4s, color 0.4s;
+    }
+    body.dark {
+      --light: #0f172a;
+      --dark: #e2e8f0;
+      background: var(--light);
+      color: var(--dark);
+    }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 20px; }
 
-					</div>
-					<div class="land-2">
-						<h2>Donuts</h2>
-						<div class="imege"><img src="image/donuts.png" alt="photo"></div>		
-						<p>10 E.G</p>			
-					</div>
-				</div>
-		</section>
-		<section class="delivery-1">
-			<div class="dliv" id="DELIVERY"><h2>Delivery</h2></div>
-			<div class="delivery">
-			<div class="pict"></div>
-				<div class="load">		
-				<span>Delivery Number</span>
-				<span>Delivery Number</span>
-				<p>0115424946</p>	
-				</div>
-			</div>
-		</section>
-		<footer>
-			<div class="con-1" id="CONTACT"><h2>CONTACT</h2></div>
-			<div class="foot">
-				<div class="icon">
-					<h2>Contact US</h2>
-					<div class="cont-4">
-						<i class="fa-brands fa-facebook" id="facebook"></i>
-						<i class="fa-brands fa-instagram" id="instagram"></i>
-						<i class="fa-brands fa-twitter" id="twitter"></i>
-					</div>
-				</div>
-				<div class="foot-1"></div>
-			</div>
-		</footer>
-	</body>
+    /* Navbar */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: rgba(15,23,42,0.85);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      transition: background 0.3s;
+    }
+    body.dark nav { background: rgba(15,23,42,0.92); }
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 0;
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--primary);
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--primary); }
+    .theme-toggle {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.3rem;
+      cursor: pointer;
+    }
+
+    /* Hero */
+    #hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      color: white;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      padding-top: 80px;
+    }
+    .hero-content h1 {
+      font-size: clamp(2.8rem, 8vw, 5.5rem);
+      margin-bottom: 1.5rem;
+      line-height: 1.1;
+    }
+    .hero-content p {
+      font-size: 1.4rem;
+      max-width: 700px;
+      margin: 0 auto 2.5rem;
+      opacity: 0.9;
+    }
+    .btn {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 14px 36px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s;
+      box-shadow: 0 10px 25px rgba(99,102,241,0.3);
+    }
+    .btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 15px 35px rgba(99,102,241,0.45);
+      background: var(--primary-dark);
+    }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      margin-right: 1.5rem;
+    }
+    .btn-outline:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* Sections */
+    section { padding: 100px 0; }
+    h2 {
+      text-align: center;
+      font-size: 3rem;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+    h2::after {
+      content: '';
+      width: 80px;
+      height: 4px;
+      background: var(--primary);
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 2px;
+    }
+
+    /* Services */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+    .service-card {
+      background: white;
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      transition: all 0.35s;
+    }
+    body.dark .service-card { background: #1e293b; }
+    .service-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 20px 50px rgba(99,102,241,0.25);
+    }
+    .service-card i {
+      font-size: 3.2rem;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+    }
+    .service-card h3 { font-size: 1.6rem; margin-bottom: 1rem; }
+
+    /* Portfolio */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 1.8rem;
+    }
+    .portfolio-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+      cursor: pointer;
+    }
+    .portfolio-item img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      transition: transform 0.6s;
+    }
+    .portfolio-item:hover img { transform: scale(1.12); }
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.65);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .portfolio-item:hover .overlay { opacity: 1; }
+
+    /* Testimonials */
+    .testimonials {
+      display: flex;
+      overflow-x: auto;
+      gap: 2rem;
+      padding: 2rem 0;
+      scroll-snap-type: x mandatory;
+    }
+    .testimonial {
+      min-width: 380px;
+      background: white;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      scroll-snap-align: center;
+    }
+    body.dark .testimonial { background: #1e293b; }
+    .stars { color: #fbbf24; margin-bottom: 1rem; }
+
+    /* Pricing */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.5rem;
+    }
+    .price-card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+      transition: all 0.4s;
+    }
+    body.dark .price-card { background: #1e293b; }
+    .price-card.popular {
+      transform: scale(1.08);
+      box-shadow: 0 25px 60px rgba(99,102,241,0.3);
+    }
+    .price-header {
+      background: var(--primary);
+      color: white;
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+    }
+    .price-header h3 { font-size: 1.8rem; }
+    .price { font-size: 3.2rem; margin: 1rem 0; }
+    .price small { font-size: 1rem; }
+    .price-features { padding: 2rem; list-style: none; }
+    .price-features li { margin: 1rem 0; }
+
+    /* Contact */
+    form {
+      max-width: 700px;
+      margin: 0 auto;
+      display: grid;
+      gap: 1.5rem;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 14px 18px;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      font-size: 1.05rem;
+      background: white;
+    }
+    body.dark input, body.dark textarea {
+      background: #1e293b;
+      border-color: #475569;
+      color: white;
+    }
+    button[type="submit"] {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 16px;
+      font-size: 1.2rem;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: white;
+      padding: 4rem 0 2rem;
+      text-align: center;
+    }
+    .social-links a {
+      color: white;
+      font-size: 1.6rem;
+      margin: 0 1rem;
+      transition: color 0.3s;
+    }
+    .social-links a:hover { color: var(--primary); }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hero-content h1 { font-size: 3.2rem; }
+      section { padding: 70px 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="container nav-container">
+      <a href="#" class="logo">Tech<span>Nova</span></a>
+      <ul class="nav-links">
+        <li><a href="#hero">الرئيسية</a></li>
+        <li><a href="#about">عنّا</a></li>
+        <li><a href="#services">الخدمات</a></li>
+        <li><a href="#portfolio">أعمالنا</a></li>
+        <li><a href="#pricing">الأسعار</a></li>
+        <li><a href="#contact">تواصل معنا</a></li>
+      </ul>
+      <button class="theme-toggle" aria-label="تبديل الوضع"><i class="fas fa-moon"></i></button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section id="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>حلول تقنية مبتكرة<br>تبني مستقبلك</h1>
+        <p>نصمم ونطور مواقع، تطبيقات وأنظمة ذكية تساعد شركتك على النمو بسرعة وكفاءة في 2026 وما بعد.</p>
+        <div>
+          <a href="#contact" class="btn">ابدأ مشروعك الآن</a>
+          <a href="#services" class="btn btn-outline">تعرف على خدماتنا</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="container">
+      <h2>من نحن</h2>
+      <p style="max-width:800px; margin:0 auto 3rem; text-align:center; font-size:1.25rem;">
+        TechNova هي شركة تقنية مصرية–عالمية متخصصة في تطوير الحلول الرقمية المتكاملة.<br>
+        نعمل مع أكثر من 120 عميل في 14 دولة، ونركز على تقديم جودة عالية بأسعار تنافسية وسرعة تسليم مذهلة.
+      </p>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" style="background:#f1f5f9;">
+    <div class="container">
+      <h2>خدماتنا</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <i class="fas fa-laptop-code"></i>
+          <h3>تطوير المواقع</h3>
+          <p>مواقع احترافية سريعة، SEO جاهزة، تصميم متجاوب 100%.</p>
+        </div>
+        <div class="service-card">
+          <i class="fas fa-mobile-alt"></i>
+          <h3>تطبيقات الموبايل</h3>
+          <p>iOS + Android (Flutter / React Native / Native).</p>
+        </div>
+        <div class="service-card">
+          <i class="fas fa-server"></i>
+          <h3>أنظمة إدارة متكاملة</h3>
+          <p>ERP، CRM، لوحات تحكم، أنظمة حجز ومتابعة.</p>
+        </div>
+        <div class="service-card">
+          <i class="fas fa-chart-line"></i>
+          <h3>التسويق الرقمي</h3>
+          <p>إعلانات، SEO، إدارة حسابات سوشيال ميديا.</p>
+        </div>
+        <div class="service-card">
+          <i class="fas fa-shield-alt"></i>
+          <h3>أمن معلومات</h3>
+          <p>اختبار الاختراق، حماية البيانات، SSL و Firewall.</p>
+        </div>
+        <div class="service-card">
+          <i class="fas fa-headset"></i>
+          <h3>دعم فني مستمر</h3>
+          <p>صيانة، تحديثات، دعم 24/7 للعملاء الذهبيين.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio -->
+  <section id="portfolio">
+    <div class="container">
+      <h2>أعمالنا</h2>
+      <div class="portfolio-grid">
+        <div class="portfolio-item">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800" alt="Project 1">
+          <div class="overlay">
+            <h3>متجر إلكتروني فاخر</h3>
+            <p>E-commerce – Next.js + Shopify</p>
+          </div>
+        </div>
+        <div class="portfolio-item">
+          <img src="https://images.unsplash.com/photo-1555066931-bf19c65fd1df?w=800" alt="Project 2">
+          <div class="overlay">
+            <h3>تطبيق توصيل طعام</h3>
+            <p>Flutter – Firebase</p>
+          </div>
+        </div>
+        <div class="portfolio-item">
+          <img src="https://images.unsplash.com/photo-1551650975-60cb5b56ca4d?w=800" alt="Project 3">
+          <div class="overlay">
+            <h3>منصة تعليمية</h3>
+            <p>React + Node.js + MongoDB</p>
+          </div>
+        </div>
+        <!-- يمكنك إضافة 3–6 صور أخرى بنفس الطريقة -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section id="testimonials" style="background:#f1f5f9;">
+    <div class="container">
+      <h2>آراء عملائنا</h2>
+      <div class="testimonials">
+        <div class="testimonial">
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p>"أفضل فريق عمل معاه، التسليم في الميعاد والجودة فوق المتوقع. ننصح بيهم بشدة!"</p>
+          <p><strong>– أحمد الشريف، CEO شركة لوجستيات</strong></p>
+        </div>
+        <div class="testimonial">
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p>"حولوا فكرتي لتطبيق احترافي في أقل من 3 شهور. خدمة ممتازة ومتابعة مستمرة."</p>
+          <p><strong>– سارة محمود، مؤسسة تطبيق تعليمي</strong></p>
+        </div>
+        <div class="testimonial">
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
+          <p>"موقعنا الجديد زاد المبيعات بنسبة 240% في أول 4 شهور. شكراً TechNova!"</p>
+          <p><strong>– محمد خالد، صاحب متجر إلكتروني</strong></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing">
+    <div class="container">
+      <h2>الباقات</h2>
+      <div class="pricing-grid">
+        <div class="price-card">
+          <div class="price-header">
+            <h3>باقة البداية</h3>
+          </div>
+          <div style="padding:2rem; text-align:center;">
+            <div class="price">15,000 <small>ج.م</small></div>
+            <ul class="price-features">
+              <li>موقع حتى 8 صفحات</li>
+              <li>تصميم متجاوب</li>
+              <li>SEO أساسي</li>
+              <li>استضافة 1 سنة</li>
+              <li>دعم 30 يوم</li>
+            </ul>
+            <a href="#contact" class="btn">اطلب الآن</a>
+          </div>
+        </div>
+
+        <div class="price-card popular">
+          <div class="price-header">
+            <h3>باقة الاحتراف</h3>
+            <div style="font-size:0.95rem; opacity:0.9;">الأكثر طلباً</div>
+          </div>
+          <div style="padding:2rem; text-align:center;">
+            <div class="price">38,000 <small>ج.م</small></div>
+            <ul class="price-features">
+              <li>موقع + لوحة تحكم</li>
+              <li>تصميم مخصص 100%</li>
+              <li>SEO متقدم + سرعة</li>
+              <li>تكامل دفع إلكتروني</li>
+              <li>دعم 90 يوم + تدريب</li>
+            </ul>
+            <a href="#contact" class="btn">اطلب الآن</a>
+          </div>
+        </div>
+
+        <div class="price-card">
+          <div class="price-header">
+            <h3>باقة المؤسسات</h3>
+          </div>
+          <div style="padding:2rem; text-align:center;">
+            <div class="price">مخصص</div>
+            <ul class="price-features">
+              <li>تطبيق + موقع + نظام</li>
+              <li>تصميم فريد + Branding</li>
+              <li>تكامل API خارجية</li>
+              <li>أمن عالي المستوى</li>
+              <li>دعم سنوي + SLA</li>
+            </ul>
+            <a href="#contact" class="btn">تواصل للتفاصيل</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" style="background:#0f172a; color:white;">
+    <div class="container">
+      <h2 style="color:white;">تواصل معانا</h2>
+      <form id="contactForm">
+        <input type="text" placeholder="الاسم الكامل" required/>
+        <input type="email" placeholder="البريد الإلكتروني" required/>
+        <input type="tel" placeholder="رقم الهاتف" required/>
+        <input type="text" placeholder="موضوع الرسالة"/>
+        <textarea rows="6" placeholder="اكتب رسالتك بالتفصيل..." required></textarea>
+        <button type="submit">إرسال الرسالة</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p style="margin-bottom:1.5rem;">© 2026 TechNova – جميع الحقوق محفوظة</p>
+      <div class="social-links">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Dark mode toggle
+    const toggle = document.querySelector('.theme-toggle');
+    const body = document.body;
+    const icon = toggle.querySelector('i');
+
+    toggle.addEventListener('click', () => {
+      body.classList.toggle('dark');
+      if (body.classList.contains('dark')) {
+        icon.classList.replace('fa-moon', 'fa-sun');
+      } else {
+        icon.classList.replace('fa-sun', 'fa-moon');
+      }
+    });
+
+    // Form submit (fake)
+    document.getElementById('contactForm').addEventListener('submit', e => {
+      e.preventDefault();
+      alert('شكراً! رسالتك وصلتنا وسوف نرد عليك في أقرب وقت.');
+      e.target.reset();
+    });
+  </script>
+</body>
 </html>
