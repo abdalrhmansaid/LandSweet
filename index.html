@@ -3,333 +3,386 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>TechNova - حلول تقنية متكاملة</title>
+  <title>Luxara - التميز في عالم التقنية</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <style>
     :root {
-      --primary: #6366f1;
-      --primary-dark: #4f46e5;
-      --dark: #0f172a;
-      --gray: #334155;
-      --light: #f8fafc;
+      --gold: #d4af37;
+      --dark: #0a0e17;
+      --navy: #1a2338;
+      --light: #f8f9fa;
+      --gray: #a0aeca;
       --white: #ffffff;
     }
     * { margin:0; padding:0; box-sizing:border-box; }
     body {
-      font-family: 'Tajawal', system-ui, -apple-system, sans-serif;
-      background: var(--light);
-      color: var(--dark);
-      line-height: 1.7;
-      transition: background 0.4s, color 0.4s;
+      font-family: 'Montserrat', sans-serif;
+      background: var(--dark);
+      color: var(--light);
+      overflow-x: hidden;
+      transition: background 0.5s, color 0.5s;
     }
-    body.dark {
-      --light: #0f172a;
-      --dark: #e2e8f0;
-      background: var(--light);
-      color: var(--dark);
+    body.light {
+      --dark: #f8f9fa;
+      --navy: #e9ecef;
+      --light: #212529;
+      --gray: #495057;
+      background: var(--dark);
+      color: var(--light);
     }
-    .container { max-width: 1280px; margin: 0 auto; padding: 0 20px; }
+    .container { max-width: 1400px; margin: 0 auto; padding: 0 5%; }
 
     /* Navbar */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
-      background: rgba(15,23,42,0.85);
-      backdrop-filter: blur(10px);
-      z-index: 1000;
-      transition: background 0.3s;
+      z-index: 2000;
+      transition: all 0.4s;
+      padding: 1.5rem 5%;
     }
-    body.dark nav { background: rgba(15,23,42,0.92); }
-    .nav-container {
+    nav.scrolled {
+      background: rgba(10,14,23,0.92);
+      backdrop-filter: blur(15px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      padding: 1rem 5%;
+    }
+    body.light nav.scrolled { background: rgba(248,249,250,0.92); }
+    .nav-inner {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 18px 0;
     }
     .logo {
-      font-size: 1.8rem;
-      font-weight: 800;
-      color: var(--primary);
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--gold);
       text-decoration: none;
+      letter-spacing: 2px;
     }
     .nav-links {
       display: flex;
-      gap: 2.2rem;
+      gap: 2.5rem;
       list-style: none;
     }
     .nav-links a {
-      color: var(--white);
+      color: var(--light);
       text-decoration: none;
       font-weight: 500;
+      position: relative;
       transition: color 0.3s;
     }
-    .nav-links a:hover { color: var(--primary); }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0; height: 2px;
+      bottom: -6px; left: 0;
+      background: var(--gold);
+      transition: width 0.4s;
+    }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a:hover { color: var(--gold); }
     .theme-toggle {
       background: none;
       border: none;
-      color: white;
-      font-size: 1.3rem;
+      color: var(--gold);
+      font-size: 1.4rem;
       cursor: pointer;
     }
 
-    /* Hero */
+    /* Hero with Parallax */
     #hero {
-      min-height: 100vh;
-      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-      color: white;
+      height: 100vh;
+      min-height: 800px;
+      position: relative;
       display: flex;
       align-items: center;
       text-align: center;
-      padding-top: 80px;
+      color: white;
+      overflow: hidden;
+    }
+    .parallax-bg {
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1557683316-973673baf926?w=1600') center/cover no-repeat fixed;
+      transform: translateZ(0);
+    }
+    .parallax-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(10,14,23,0.6), rgba(10,14,23,0.85));
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      margin: 0 auto;
     }
     .hero-content h1 {
-      font-size: clamp(2.8rem, 8vw, 5.5rem);
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(4rem, 10vw, 8rem);
       margin-bottom: 1.5rem;
-      line-height: 1.1;
+      letter-spacing: 4px;
+      text-shadow: 0 10px 30px rgba(0,0,0,0.7);
     }
     .hero-content p {
-      font-size: 1.4rem;
-      max-width: 700px;
-      margin: 0 auto 2.5rem;
+      font-size: 1.5rem;
+      max-width: 800px;
+      margin: 0 auto 3rem;
       opacity: 0.9;
     }
-    .btn {
-      display: inline-block;
-      background: var(--primary);
-      color: white;
-      padding: 14px 36px;
+    .btn-gold {
+      background: var(--gold);
+      color: var(--dark);
+      padding: 16px 48px;
+      border: none;
       border-radius: 50px;
-      text-decoration: none;
+      font-size: 1.2rem;
       font-weight: 600;
-      font-size: 1.1rem;
-      transition: all 0.3s;
-      box-shadow: 0 10px 25px rgba(99,102,241,0.3);
+      cursor: pointer;
+      transition: all 0.4s;
+      box-shadow: 0 10px 30px rgba(212,175,55,0.3);
     }
-    .btn:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 15px 35px rgba(99,102,241,0.45);
-      background: var(--primary-dark);
-    }
-    .btn-outline {
-      background: transparent;
-      border: 2px solid var(--primary);
-      color: var(--primary);
-      margin-right: 1.5rem;
-    }
-    .btn-outline:hover {
-      background: var(--primary);
-      color: white;
+    .btn-gold:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 50px rgba(212,175,55,0.5);
+      background: #e6c56e;
     }
 
     /* Sections */
-    section { padding: 100px 0; }
+    section { padding: 120px 0; position: relative; }
     h2 {
+      font-family: 'Playfair Display', serif;
       text-align: center;
-      font-size: 3rem;
-      margin-bottom: 3rem;
+      font-size: 4.5rem;
+      margin-bottom: 4rem;
+      color: var(--gold);
       position: relative;
     }
     h2::after {
       content: '';
-      width: 80px;
-      height: 4px;
-      background: var(--primary);
+      width: 120px;
+      height: 3px;
+      background: var(--gold);
       position: absolute;
-      bottom: -15px;
+      bottom: -20px;
       left: 50%;
       transform: translateX(-50%);
-      border-radius: 2px;
+    }
+
+    /* About */
+    #about .about-text {
+      max-width: 900px;
+      margin: 0 auto;
+      font-size: 1.3rem;
+      text-align: center;
+      line-height: 2;
     }
 
     /* Services */
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 3rem;
     }
     .service-card {
-      background: white;
-      border-radius: 16px;
-      padding: 2.5rem 2rem;
+      background: rgba(26,35,56,0.6);
+      border: 1px solid rgba(212,175,55,0.2);
+      border-radius: 20px;
+      padding: 3rem 2rem;
       text-align: center;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-      transition: all 0.35s;
+      transition: all 0.5s;
+      backdrop-filter: blur(10px);
     }
-    body.dark .service-card { background: #1e293b; }
+    body.light .service-card { background: rgba(233,236,239,0.8); border-color: rgba(212,175,55,0.3); }
     .service-card:hover {
-      transform: translateY(-12px);
-      box-shadow: 0 20px 50px rgba(99,102,241,0.25);
+      transform: translateY(-20px) scale(1.03);
+      border-color: var(--gold);
+      box-shadow: 0 30px 70px rgba(212,175,55,0.25);
     }
     .service-card i {
-      font-size: 3.2rem;
-      color: var(--primary);
+      font-size: 4rem;
+      color: var(--gold);
       margin-bottom: 1.5rem;
     }
-    .service-card h3 { font-size: 1.6rem; margin-bottom: 1rem; }
+    .service-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
 
     /* Portfolio */
     .portfolio-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 1.8rem;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 2.5rem;
     }
     .portfolio-item {
       position: relative;
       overflow: hidden;
-      border-radius: 16px;
+      border-radius: 20px;
       cursor: pointer;
     }
     .portfolio-item img {
       width: 100%;
-      height: 280px;
+      height: 500px;
       object-fit: cover;
-      transition: transform 0.6s;
+      transition: transform 0.8s;
     }
-    .portfolio-item:hover img { transform: scale(1.12); }
-    .overlay {
+    .portfolio-item:hover img { transform: scale(1.15); }
+    .portfolio-overlay {
       position: absolute;
       inset: 0;
-      background: rgba(0,0,0,0.65);
-      color: white;
+      background: linear-gradient(to top, rgba(10,14,23,0.9), transparent);
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      justify-content: flex-end;
+      padding: 3rem;
       opacity: 0;
-      transition: opacity 0.4s;
+      transition: opacity 0.5s;
     }
-    .portfolio-item:hover .overlay { opacity: 1; }
+    .portfolio-item:hover .portfolio-overlay { opacity: 1; }
+    .portfolio-overlay h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+    }
 
-    /* Testimonials */
-    .testimonials {
+    /* Testimonials Carousel */
+    .testimonials-carousel {
+      overflow: hidden;
+      position: relative;
+    }
+    .carousel-inner {
       display: flex;
-      overflow-x: auto;
-      gap: 2rem;
-      padding: 2rem 0;
-      scroll-snap-type: x mandatory;
+      transition: transform 0.8s ease;
     }
     .testimonial {
-      min-width: 380px;
-      background: white;
-      padding: 2rem;
-      border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-      scroll-snap-align: center;
+      min-width: 100%;
+      padding: 0 15%;
+      text-align: center;
     }
-    body.dark .testimonial { background: #1e293b; }
-    .stars { color: #fbbf24; margin-bottom: 1rem; }
+    .testimonial p {
+      font-size: 1.4rem;
+      font-style: italic;
+      margin-bottom: 2rem;
+    }
+    .testimonial-author {
+      font-weight: 600;
+      color: var(--gold);
+    }
 
     /* Pricing */
     .pricing-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 3rem;
     }
     .price-card {
-      background: white;
-      border-radius: 20px;
+      background: rgba(26,35,56,0.6);
+      border-radius: 25px;
       overflow: hidden;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-      transition: all 0.4s;
+      border: 1px solid rgba(212,175,55,0.2);
+      transition: all 0.5s;
+      backdrop-filter: blur(10px);
     }
-    body.dark .price-card { background: #1e293b; }
-    .price-card.popular {
-      transform: scale(1.08);
-      box-shadow: 0 25px 60px rgba(99,102,241,0.3);
-    }
+    .price-card:hover { transform: translateY(-30px); border-color: var(--gold); }
     .price-header {
-      background: var(--primary);
-      color: white;
-      padding: 2.5rem 1.5rem;
+      background: linear-gradient(135deg, var(--gold), #b8972e);
+      color: var(--dark);
+      padding: 3rem 2rem;
       text-align: center;
     }
-    .price-header h3 { font-size: 1.8rem; }
-    .price { font-size: 3.2rem; margin: 1rem 0; }
-    .price small { font-size: 1rem; }
-    .price-features { padding: 2rem; list-style: none; }
-    .price-features li { margin: 1rem 0; }
+    .price-header h3 { font-size: 2.5rem; }
+    .price { font-size: 4rem; margin: 1.5rem 0; }
+    .price-features { padding: 2.5rem; list-style: none; }
+    .price-features li { margin: 1.2rem 0; font-size: 1.1rem; }
 
     /* Contact */
     form {
-      max-width: 700px;
+      max-width: 800px;
       margin: 0 auto;
       display: grid;
-      gap: 1.5rem;
+      gap: 1.8rem;
     }
     input, textarea {
-      width: 100%;
-      padding: 14px 18px;
-      border: 1px solid #cbd5e1;
-      border-radius: 10px;
-      font-size: 1.05rem;
-      background: white;
-    }
-    body.dark input, body.dark textarea {
-      background: #1e293b;
-      border-color: #475569;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(212,175,55,0.3);
       color: white;
+      padding: 18px 24px;
+      border-radius: 12px;
+      font-size: 1.1rem;
+    }
+    body.light input, body.light textarea {
+      background: rgba(0,0,0,0.05);
+      border-color: rgba(0,0,0,0.2);
+      color: black;
     }
     button[type="submit"] {
-      background: var(--primary);
-      color: white;
+      background: var(--gold);
+      color: var(--dark);
       border: none;
-      padding: 16px;
-      font-size: 1.2rem;
-      border-radius: 10px;
+      padding: 18px;
+      font-size: 1.3rem;
+      border-radius: 12px;
       cursor: pointer;
+      font-weight: 600;
     }
 
     /* Footer */
     footer {
-      background: var(--dark);
-      color: white;
-      padding: 4rem 0 2rem;
+      background: var(--navy);
+      padding: 5rem 0 3rem;
       text-align: center;
     }
-    .social-links a {
-      color: white;
-      font-size: 1.6rem;
-      margin: 0 1rem;
+    .social a {
+      color: var(--light);
+      font-size: 1.8rem;
+      margin: 0 1.2rem;
       transition: color 0.3s;
     }
-    .social-links a:hover { color: var(--primary); }
+    .social a:hover { color: var(--gold); }
+
+    /* Animations */
+    .fade-in { opacity: 0; transform: translateY(50px); transition: all 1s; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
 
     @media (max-width: 768px) {
       .nav-links { display: none; }
-      .hero-content h1 { font-size: 3.2rem; }
-      section { padding: 70px 0; }
+      h2 { font-size: 3rem; }
+      .hero-content h1 { font-size: 5rem; }
     }
   </style>
 </head>
-<body>
+<body class="light"> <!-- ابدأ light أو dark حسب رغبتك -->
 
   <!-- Navbar -->
-  <nav>
-    <div class="container nav-container">
-      <a href="#" class="logo">Tech<span>Nova</span></a>
+  <nav id="navbar">
+    <div class="nav-inner container">
+      <a href="#" class="logo">Luxara</a>
       <ul class="nav-links">
         <li><a href="#hero">الرئيسية</a></li>
         <li><a href="#about">عنّا</a></li>
         <li><a href="#services">الخدمات</a></li>
         <li><a href="#portfolio">أعمالنا</a></li>
-        <li><a href="#pricing">الأسعار</a></li>
-        <li><a href="#contact">تواصل معنا</a></li>
+        <li><a href="#pricing">الباقات</a></li>
+        <li><a href="#contact">تواصل</a></li>
       </ul>
-      <button class="theme-toggle" aria-label="تبديل الوضع"><i class="fas fa-moon"></i></button>
+      <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
     </div>
   </nav>
 
-  <!-- Hero -->
+  <!-- Hero Parallax -->
   <section id="hero">
-    <div class="container">
-      <div class="hero-content">
-        <h1>حلول تقنية مبتكرة<br>تبني مستقبلك</h1>
-        <p>نصمم ونطور مواقع، تطبيقات وأنظمة ذكية تساعد شركتك على النمو بسرعة وكفاءة في 2026 وما بعد.</p>
-        <div>
-          <a href="#contact" class="btn">ابدأ مشروعك الآن</a>
-          <a href="#services" class="btn btn-outline">تعرف على خدماتنا</a>
-        </div>
-      </div>
+    <div class="parallax-bg"></div>
+    <div class="parallax-overlay"></div>
+    <div class="hero-content container">
+      <h1>التميّز يبدأ هنا</h1>
+      <p>نصنع تجارب رقمية فاخرة تجمع بين الابتكار والأناقة لعلاماتك التجارية الرائدة</p>
+      <button class="btn-gold">ابدأ رحلتك الآن</button>
     </div>
   </section>
 
@@ -337,47 +390,32 @@
   <section id="about">
     <div class="container">
       <h2>من نحن</h2>
-      <p style="max-width:800px; margin:0 auto 3rem; text-align:center; font-size:1.25rem;">
-        TechNova هي شركة تقنية مصرية–عالمية متخصصة في تطوير الحلول الرقمية المتكاملة.<br>
-        نعمل مع أكثر من 120 عميل في 14 دولة، ونركز على تقديم جودة عالية بأسعار تنافسية وسرعة تسليم مذهلة.
-      </p>
+      <div class="about-text fade-in">
+        <p>Luxara هي وكالة تقنية فاخرة متخصصة في بناء هويات رقمية استثنائية للعلامات التجارية الراقية. نجمع بين التصميم الفني العالي والتكنولوجيا المتطورة لنقدم حلولاً تتجاوز التوقعات، من مواقع فاخرة إلى تطبيقات ذكية وتجارب تفاعلية مذهلة.</p>
+        <p>مع فريق من المبدعين والمهندسين ذوي الخبرة العالمية، نضمن أن كل مشروع يعكس قيم العميل ويرفع من مكانته في عالم اليوم التنافسي.</p>
+      </div>
     </div>
   </section>
 
   <!-- Services -->
-  <section id="services" style="background:#f1f5f9;">
+  <section id="services" style="background: linear-gradient(to bottom, #0a0e17, #1a2338);">
     <div class="container">
-      <h2>خدماتنا</h2>
+      <h2>خدماتنا الفاخرة</h2>
       <div class="services-grid">
-        <div class="service-card">
-          <i class="fas fa-laptop-code"></i>
-          <h3>تطوير المواقع</h3>
-          <p>مواقع احترافية سريعة، SEO جاهزة، تصميم متجاوب 100%.</p>
+        <div class="service-card fade-in">
+          <i class="fas fa-gem"></i>
+          <h3>تصميم فاخر</h3>
+          <p>تصاميم مخصصة تجمع بين الأناقة الكلاسيكية والحداثة الرقمية.</p>
         </div>
-        <div class="service-card">
-          <i class="fas fa-mobile-alt"></i>
-          <h3>تطبيقات الموبايل</h3>
-          <p>iOS + Android (Flutter / React Native / Native).</p>
+        <div class="service-card fade-in" style="transition-delay:0.2s;">
+          <i class="fas fa-code"></i>
+          <h3>تطوير متقدم</h3>
+          <p>تطبيقات ومواقع عالية الأداء باستخدام أحدث التقنيات.</p>
         </div>
-        <div class="service-card">
-          <i class="fas fa-server"></i>
-          <h3>أنظمة إدارة متكاملة</h3>
-          <p>ERP، CRM، لوحات تحكم، أنظمة حجز ومتابعة.</p>
-        </div>
-        <div class="service-card">
-          <i class="fas fa-chart-line"></i>
-          <h3>التسويق الرقمي</h3>
-          <p>إعلانات، SEO، إدارة حسابات سوشيال ميديا.</p>
-        </div>
-        <div class="service-card">
-          <i class="fas fa-shield-alt"></i>
-          <h3>أمن معلومات</h3>
-          <p>اختبار الاختراق، حماية البيانات، SSL و Firewall.</p>
-        </div>
-        <div class="service-card">
-          <i class="fas fa-headset"></i>
-          <h3>دعم فني مستمر</h3>
-          <p>صيانة، تحديثات، دعم 24/7 للعملاء الذهبيين.</p>
+        <div class="service-card fade-in" style="transition-delay:0.4s;">
+          <i class="fas fa-chart-network"></i>
+          <h3>استراتيجيات نمو</h3>
+          <p>حلول تسويق رقمي وتحسين محركات البحث للعلامات الراقية.</p>
         </div>
       </div>
     </div>
@@ -386,53 +424,51 @@
   <!-- Portfolio -->
   <section id="portfolio">
     <div class="container">
-      <h2>أعمالنا</h2>
+      <h2>أعمالنا المميزة</h2>
       <div class="portfolio-grid">
-        <div class="portfolio-item">
-          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800" alt="Project 1">
-          <div class="overlay">
-            <h3>متجر إلكتروني فاخر</h3>
-            <p>E-commerce – Next.js + Shopify</p>
+        <div class="portfolio-item fade-in">
+          <img src="https://images.unsplash.com/photo-1555066931-bf19c65fd1df?w=1200" alt="Project 1">
+          <div class="portfolio-overlay">
+            <h3>علامة تجارية فاخرة</h3>
+            <p>موقع + تطبيق + Branding كامل</p>
           </div>
         </div>
-        <div class="portfolio-item">
-          <img src="https://images.unsplash.com/photo-1555066931-bf19c65fd1df?w=800" alt="Project 2">
-          <div class="overlay">
-            <h3>تطبيق توصيل طعام</h3>
-            <p>Flutter – Firebase</p>
+        <div class="portfolio-item fade-in" style="transition-delay:0.2s;">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200" alt="Project 2">
+          <div class="portfolio-overlay">
+            <h3>منصة استثمارية</h3>
+            <p>Dashboard متقدم + أمان عالي</p>
           </div>
         </div>
-        <div class="portfolio-item">
-          <img src="https://images.unsplash.com/photo-1551650975-60cb5b56ca4d?w=800" alt="Project 3">
-          <div class="overlay">
-            <h3>منصة تعليمية</h3>
-            <p>React + Node.js + MongoDB</p>
+        <div class="portfolio-item fade-in" style="transition-delay:0.4s;">
+          <img src="https://images.unsplash.com/photo-1551650975-60cb5b56ca4d?w=1200" alt="Project 3">
+          <div class="portfolio-overlay">
+            <h3>تجربة فندقية رقمية</h3>
+            <p>حجز + VR Tour + App</p>
           </div>
         </div>
-        <!-- يمكنك إضافة 3–6 صور أخرى بنفس الطريقة -->
       </div>
     </div>
   </section>
 
   <!-- Testimonials -->
-  <section id="testimonials" style="background:#f1f5f9;">
+  <section id="testimonials" style="background: #0a0e17;">
     <div class="container">
-      <h2>آراء عملائنا</h2>
-      <div class="testimonials">
-        <div class="testimonial">
-          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-          <p>"أفضل فريق عمل معاه، التسليم في الميعاد والجودة فوق المتوقع. ننصح بيهم بشدة!"</p>
-          <p><strong>– أحمد الشريف، CEO شركة لوجستيات</strong></p>
-        </div>
-        <div class="testimonial">
-          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-          <p>"حولوا فكرتي لتطبيق احترافي في أقل من 3 شهور. خدمة ممتازة ومتابعة مستمرة."</p>
-          <p><strong>– سارة محمود، مؤسسة تطبيق تعليمي</strong></p>
-        </div>
-        <div class="testimonial">
-          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div>
-          <p>"موقعنا الجديد زاد المبيعات بنسبة 240% في أول 4 شهور. شكراً TechNova!"</p>
-          <p><strong>– محمد خالد، صاحب متجر إلكتروني</strong></p>
+      <h2>ما يقوله عملاؤنا</h2>
+      <div class="testimonials-carousel">
+        <div class="carousel-inner" id="carousel">
+          <div class="testimonial">
+            <p>"Luxara غيرت نظرتنا تمامًا للعلامة التجارية الرقمية. النتيجة فاقت كل التوقعات."</p>
+            <div class="testimonial-author">— الشيخ أحمد بن زايد، CEO مجموعة فاخرة</div>
+          </div>
+          <div class="testimonial">
+            <p>"احترافية عالية، تصميم يليق بالعلامات العالمية. نوصي بهم بشدة."</p>
+            <div class="testimonial-author">— لمى العتيبي، مؤسسة علامة أزياء</div>
+          </div>
+          <div class="testimonial">
+            <p>"التسليم في الوقت، جودة استثنائية، ودعم مستمر. شراكة ناجحة."</p>
+            <div class="testimonial-author">— د. خالد المطيري، رئيس شركة تقنية</div>
+          </div>
         </div>
       </div>
     </div>
@@ -441,57 +477,52 @@
   <!-- Pricing -->
   <section id="pricing">
     <div class="container">
-      <h2>الباقات</h2>
+      <h2>باقاتنا</h2>
       <div class="pricing-grid">
-        <div class="price-card">
+        <div class="price-card fade-in">
           <div class="price-header">
-            <h3>باقة البداية</h3>
+            <h3>الباقة الكلاسيك</h3>
           </div>
-          <div style="padding:2rem; text-align:center;">
-            <div class="price">15,000 <small>ج.م</small></div>
+          <div style="padding:3rem 2rem; text-align:center;">
+            <div class="price">٤٩,٩٩٩ <small>ريال</small></div>
             <ul class="price-features">
-              <li>موقع حتى 8 صفحات</li>
-              <li>تصميم متجاوب</li>
-              <li>SEO أساسي</li>
-              <li>استضافة 1 سنة</li>
-              <li>دعم 30 يوم</li>
+              <li>موقع فاخر حتى ١٠ صفحات</li>
+              <li>تصميم مخصص كامل</li>
+              <li>SEO أساسي + سرعة</li>
+              <li>دعم ٦٠ يوم</li>
             </ul>
-            <a href="#contact" class="btn">اطلب الآن</a>
+            <button class="btn-gold">اختر الباقة</button>
           </div>
         </div>
-
-        <div class="price-card popular">
+        <div class="price-card fade-in" style="transform:scale(1.1); z-index:10;">
           <div class="price-header">
-            <h3>باقة الاحتراف</h3>
-            <div style="font-size:0.95rem; opacity:0.9;">الأكثر طلباً</div>
+            <h3>الباقة الذهبية</h3>
+            <div style="font-size:1rem; opacity:0.9;">الأكثر تميزًا</div>
           </div>
-          <div style="padding:2rem; text-align:center;">
-            <div class="price">38,000 <small>ج.م</small></div>
+          <div style="padding:3rem 2rem; text-align:center;">
+            <div class="price">١٢٩,٩٩٩ <small>ريال</small></div>
             <ul class="price-features">
-              <li>موقع + لوحة تحكم</li>
-              <li>تصميم مخصص 100%</li>
-              <li>SEO متقدم + سرعة</li>
-              <li>تكامل دفع إلكتروني</li>
-              <li>دعم 90 يوم + تدريب</li>
+              <li>موقع + تطبيق + Dashboard</li>
+              <li>Branding كامل</li>
+              <li>تكامل AI + أمان متقدم</li>
+              <li>دعم سنة كاملة</li>
             </ul>
-            <a href="#contact" class="btn">اطلب الآن</a>
+            <button class="btn-gold">اختر الباقة</button>
           </div>
         </div>
-
-        <div class="price-card">
+        <div class="price-card fade-in">
           <div class="price-header">
-            <h3>باقة المؤسسات</h3>
+            <h3>الباقة البلاتينية</h3>
           </div>
-          <div style="padding:2rem; text-align:center;">
+          <div style="padding:3rem 2rem; text-align:center;">
             <div class="price">مخصص</div>
             <ul class="price-features">
-              <li>تطبيق + موقع + نظام</li>
-              <li>تصميم فريد + Branding</li>
-              <li>تكامل API خارجية</li>
-              <li>أمن عالي المستوى</li>
-              <li>دعم سنوي + SLA</li>
+              <li>حلول شاملة للمؤسسات</li>
+              <li>تطوير مخصص ١٠٠%</li>
+              <li>فريق خاص + SLA</li>
+              <li>شراكة طويلة الأمد</li>
             </ul>
-            <a href="#contact" class="btn">تواصل للتفاصيل</a>
+            <button class="btn-gold">تواصل للتفاصيل</button>
           </div>
         </div>
       </div>
@@ -499,16 +530,15 @@
   </section>
 
   <!-- Contact -->
-  <section id="contact" style="background:#0f172a; color:white;">
+  <section id="contact" style="background: linear-gradient(to bottom, #1a2338, #0a0e17);">
     <div class="container">
-      <h2 style="color:white;">تواصل معانا</h2>
+      <h2>ابدأ مشروعك الفاخر</h2>
       <form id="contactForm">
-        <input type="text" placeholder="الاسم الكامل" required/>
-        <input type="email" placeholder="البريد الإلكتروني" required/>
-        <input type="tel" placeholder="رقم الهاتف" required/>
-        <input type="text" placeholder="موضوع الرسالة"/>
-        <textarea rows="6" placeholder="اكتب رسالتك بالتفصيل..." required></textarea>
-        <button type="submit">إرسال الرسالة</button>
+        <input type="text" placeholder="الاسم الكامل" required>
+        <input type="email" placeholder="البريد الإلكتروني" required>
+        <input type="tel" placeholder="رقم الجوال">
+        <textarea rows="6" placeholder="وصف المشروع أو استفسارك..." required></textarea>
+        <button type="submit">إرسال الطلب</button>
       </form>
     </div>
   </section>
@@ -516,36 +546,64 @@
   <!-- Footer -->
   <footer>
     <div class="container">
-      <p style="margin-bottom:1.5rem;">© 2026 TechNova – جميع الحقوق محفوظة</p>
-      <div class="social-links">
-        <a href="#"><i class="fab fa-facebook-f"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
+      <p style="margin-bottom:2rem; font-size:1.2rem;">© ٢٠٢٦ Luxara – التميز الرقمي الفاخر</p>
+      <div class="social">
         <a href="#"><i class="fab fa-instagram"></i></a>
         <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
         <a href="#"><i class="fab fa-whatsapp"></i></a>
       </div>
     </div>
   </footer>
 
   <script>
-    // Dark mode toggle
-    const toggle = document.querySelector('.theme-toggle');
+    // Theme Toggle + Save
+    const toggle = document.getElementById('themeToggle');
     const body = document.body;
     const icon = toggle.querySelector('i');
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    body.classList.add(savedTheme);
+    if (savedTheme === 'dark') icon.classList.replace('fa-moon', 'fa-sun');
 
     toggle.addEventListener('click', () => {
-      body.classList.toggle('dark');
-      if (body.classList.contains('dark')) {
+      if (body.classList.contains('light')) {
+        body.classList.replace('light', 'dark');
         icon.classList.replace('fa-moon', 'fa-sun');
+        localStorage.setItem('theme', 'dark');
       } else {
+        body.classList.replace('dark', 'light');
         icon.classList.replace('fa-sun', 'fa-moon');
+        localStorage.setItem('theme', 'light');
       }
     });
 
-    // Form submit (fake)
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 100);
+    });
+
+    // Fade-in on scroll
+    const fadeElements = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+    fadeElements.forEach(el => observer.observe(el));
+
+    // Simple carousel auto-scroll (testimonials)
+    let currentSlide = 0;
+    const carousel = document.getElementById('carousel');
+    const slides = document.querySelectorAll('.testimonial');
+    setInterval(() => {
+      currentSlide = (currentSlide + 1) % slides.length;
+      carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+    }, 6000);
+
+    // Form fake submit
     document.getElementById('contactForm').addEventListener('submit', e => {
       e.preventDefault();
-      alert('شكراً! رسالتك وصلتنا وسوف نرد عليك في أقرب وقت.');
+      alert('شكراً لثقتك! سنتواصل معك خلال ٢٤ ساعة.');
       e.target.reset();
     });
   </script>
